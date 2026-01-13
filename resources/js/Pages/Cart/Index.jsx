@@ -23,11 +23,6 @@ export default function Index({ auth, cartItems, errors }) {
             <div className="py-12 bg-gray-100 min-h-screen">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                        {errors && errors.error && (
-                            <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded transition-all">
-                                {errors.error}
-                            </div>
-                        )}
                         {cartItems.length === 0 ? (
                             <div className="text-center py-10 text-gray-500">
                                 Your cart is empty. <br />

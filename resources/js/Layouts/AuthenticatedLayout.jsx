@@ -3,9 +3,10 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 export default function Authenticated({ auth, header, children }) {
+    const { flash, errors } = usePage().props;
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
@@ -121,7 +122,21 @@ export default function Authenticated({ auth, header, children }) {
                 </header>
             )}
 
-            <main>{children}</main>
+            <main>
+                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
+                    {flash?.success && (
+                        <div className="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative shadow-sm" role="alert">
+                            <span className="block sm:inline">{flash.success}</span>
+                        </div>
+                    )}
+                    {(flash?.error || errors?.error) && (
+                        <div className="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative shadow-sm" role="alert">
+                            <span className="block sm:inline">{flash?.error || errors?.error}</span>
+                        </div>
+                    )}
+                </div>
+                {children}
+            </main>
         </div>
     );
 }
