@@ -41,6 +41,6 @@ class DailySalesReportJob implements ShouldQueue
             ];
         }
 
-        Mail::to('admin@example.com')->send(new DailySalesReport($reportData));
+        Mail::to('indrajeet10000@gmail.com')->send(new DailySalesReport($reportData));
     }
 }
