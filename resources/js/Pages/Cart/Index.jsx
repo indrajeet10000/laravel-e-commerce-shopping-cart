@@ -54,13 +54,15 @@ export default function Index({ auth, cartItems, errors }) {
                                     <div className="text-right">
                                         <p className="text-lg text-gray-600">Subtotal</p>
                                         <p className="text-3xl font-bold text-gray-900">${total.toFixed(2)}</p>
-                                        <button
-                                            onClick={handleCheckout}
-                                            disabled={processing}
-                                            className="mt-4 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
-                                        >
-                                            {processing ? 'Processing...' : 'Checkout'}
-                                        </button>
+                                        <form onSubmit={(e) => { e.preventDefault(); handleCheckout(); }}>
+                                            <button
+                                                type="submit"
+                                                disabled={processing}
+                                                className="mt-4 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+                                            >
+                                                {processing ? 'Processing...' : 'Checkout'}
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </>
@@ -105,6 +107,8 @@ function CartItemRow({ item }) {
             <td className="px-6 py-4 whitespace-nowrap">
                 <input
                     type="number"
+                    id={`quantity-${item.id}`}
+                    name="quantity"
                     min="1"
                     className="w-20 rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
                     defaultValue={item.quantity}

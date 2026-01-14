@@ -60,6 +60,8 @@ function ProductCard({ product }) {
                 <form onSubmit={submit} className="flex gap-2">
                     <input
                         type="number"
+                        id={`quantity-${product.id}`}
+                        name="quantity"
                         min="1"
                         max={product.stock_quantity}
                         value={data.quantity}
